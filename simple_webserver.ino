@@ -15,7 +15,7 @@ float h = 0.0;
 
 ESP8266WebServer server;
  
-const char* device_id = WiFi.macAddress();
+const char* device_id = WiFi.macAddress();c
 const char* ssid = "";
 const char* password = "";
 
@@ -34,6 +34,11 @@ void setup()
 	Serial.print(WiFi.localIP());
 
 	server.on("/",[]{server.send(200, "text/plain", String(t).c_str());});
+	// TODO: Print output of all values to /
+	// NEXT: Line 36 only temp gets printed, add humidity
+	// [] Build json object with all values; post to server
+	// [] create config file with SSID and pw. Check if exists and read values from there
+	// [] Deep sleep
 	server.begin();
 }
 
