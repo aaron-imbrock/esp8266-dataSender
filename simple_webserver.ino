@@ -12,9 +12,10 @@ DHT dht(DHTPIN, DHTTYPE);
 // current temperature & humidity
 float t = 0.0;
 float h = 0.0;
- 
-ESP8266WebServer server;
 
+ESP8266WebServer server;
+ 
+const char* device_id = WiFi.macAddress();
 const char* ssid = "";
 const char* password = "";
 
@@ -32,7 +33,7 @@ void setup()
 	Serial.print("IP Address: ");
 	Serial.print(WiFi.localIP());
 
-	server.on("/",[]{server.send(200, "text/plain", "Hello World");});
+	server.on("/",[]{server.send(200, "text/plain", String(t).c_str());});
 	server.begin();
 }
 
